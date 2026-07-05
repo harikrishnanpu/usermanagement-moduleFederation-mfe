@@ -1,11 +1,8 @@
-
-
+import Login from "./pages/Login";
 
 const App = () => {
     return (
-        <div>
-            <p>Hello, Auth!</p>
-        </div>
+       <Login />
     )
 }
 

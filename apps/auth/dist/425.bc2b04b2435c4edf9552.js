@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkauth=self.webpackChunkauth||[]).push([[425],{906(e,n,t){var s=t(127),r=t(541);const c=function(){return(0,s.jsxs)("div",{children:[(0,s.jsx)("h2",{children:"Login Page"}),(0,s.jsx)("button",{children:"Login"})]})},o=()=>(0,s.jsx)(c,{});r.createRoot(document.getElementById("root")).render((0,s.jsx)(o,{}))}}]);
+//# sourceMappingURL=425.bc2b04b2435c4edf9552.js.map

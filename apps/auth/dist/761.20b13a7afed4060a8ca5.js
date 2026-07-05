@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkauth=self.webpackChunkauth||[]).push([[761],{761(e,n,u){u.r(n);var h=u(127);u.d(n,["default",0,function(){return(0,h.jsxs)("div",{children:[(0,h.jsx)("h2",{children:"Login Page"}),(0,h.jsx)("button",{children:"Login"})]})}])}}]);
+//# sourceMappingURL=761.20b13a7afed4060a8ca5.js.map

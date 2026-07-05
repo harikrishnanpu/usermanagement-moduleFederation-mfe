@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkhost=self.webpackChunkhost||[]).push([[859],{80(e,s,n){var l=n(127),t=n(541),o=n(542);const c=o.lazy(()=>n.e(467).then(n.t.bind(n,467,23))),d=()=>(0,l.jsxs)("div",{children:[(0,l.jsx)("p",{children:"Hello, World!"}),(0,l.jsx)(o.Suspense,{fallback:(0,l.jsx)("p",{children:"Loading login..."}),children:(0,l.jsx)(c,{})})]});t.createRoot(document.getElementById("root")).render((0,l.jsx)(d,{}))}}]);
+//# sourceMappingURL=859.0fae4859a2c2770a69f5.js.map

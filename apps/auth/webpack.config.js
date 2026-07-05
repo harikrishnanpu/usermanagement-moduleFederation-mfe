@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack").container.ModuleFederationPlugin;
-
+const deps = require("./package.json").dependencies;
 
 module.exports = {
   // -----------------------------
@@ -21,7 +21,8 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[contenthash].js",
     clean: true,
-    publicPath: "auto",
+    publicPath: "http://localhost:3001/",
+    crossOriginLoading: "anonymous",
   },
 
   // -----------------------------
@@ -29,6 +30,10 @@ module.exports = {
   // -----------------------------
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    alias: {
+      react: path.resolve(__dirname, "node_modules/react"),
+      "react-dom": path.resolve(__dirname, "node_modules/react-dom"),
+    },
   },
 
   // -----------------------------
@@ -68,30 +73,36 @@ module.exports = {
       template: "./public/index.html",
     }),
 
-    new ModuleFederationPlugin({
-      name: "host",
-      remotes: {},
+new ModuleFederationPlugin({
+  name: "auth",
+  filename: "remoteEntry.js",
+  exposes: {
+    "./Login": "./src/pages/Login",
+  },
+  shared: {
+    react: {
+      singleton: true,
+    },
 
-      shared: {
-        react: {
-          singleton: true,
-        },
-
-        "react-dom": {
-          singleton: true,
-        },
-      }
-    }),
+    "react-dom": {
+      singleton: true,
+    },
+  },
+}),
   ],
 
   // -----------------------------
   // Development Server
   // -----------------------------
   devServer: {
-    port: 3000,
+    port: 3001,
     hot: true,
     open: true,
     historyApiFallback: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Cross-Origin-Resource-Policy": "cross-origin",
+    },
     static: {
       directory: path.resolve(__dirname, "public"),
     },

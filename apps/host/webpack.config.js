@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack").container.ModuleFederationPlugin;
-
+const deps = require("./package.json").dependencies;
 
 module.exports = {
   // -----------------------------
@@ -29,6 +29,10 @@ module.exports = {
   // -----------------------------
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    alias: {
+      react: path.resolve(__dirname, "node_modules/react"),
+      "react-dom": path.resolve(__dirname, "node_modules/react-dom"),
+    },
   },
 
   // -----------------------------
