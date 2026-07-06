@@ -33,6 +33,7 @@ module.exports = {
     alias: {
       react: path.resolve(__dirname, "node_modules/react"),
       "react-dom": path.resolve(__dirname, "node_modules/react-dom"),
+      "@mfe/types": path.resolve(__dirname, "../../packages/types"),
     },
   },
 
@@ -76,8 +77,13 @@ module.exports = {
 new ModuleFederationPlugin({
   name: "auth",
   filename: "remoteEntry.js",
+
+  remotes: {
+    host: "host@http://localhost:3000/remoteEntry.js",
+  },
+
   exposes: {
-    "./Login": "./src/pages/Login",
+    "./AuthApp": "./src/pages/AuthApp",
   },
   shared: {
     react: {
@@ -85,6 +91,10 @@ new ModuleFederationPlugin({
     },
 
     "react-dom": {
+      singleton: true,
+    },
+
+    "react-router-dom": {
       singleton: true,
     },
   },

@@ -1,4 +1,9 @@
-declare module "auth/Login" {
-  const Login: () => JSX.Element;
-  export default Login;
+declare module "auth/AuthApp" {
+  const AuthApp: () => JSX.Element;
+  export default AuthApp;
+}
+
+declare module "profile/ProfileApp" {
+  const ProfileApp: () => JSX.Element;
+  export default ProfileApp;
 }

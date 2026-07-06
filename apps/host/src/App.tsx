@@ -1,16 +1,61 @@
-import React from "react";
+import React, { Suspense } from "react";
+import {
+  createBrowserRouter,
+  Link,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 
-const Login = React.lazy(() => import("auth/Login"));
+const AuthApp = React.lazy(() => import("auth/AuthApp"));
+const ProfileApp = React.lazy(() => import("profile/ProfileApp"));
 
-const App = () => {
+function Layout() {
   return (
-    <div>
-      <p>Hello, World!</p>
-      <React.Suspense fallback={<p>Loading login...</p>}>
-        <Login />
-      </React.Suspense>
+    <div style={{ padding: "20px" }}>
+      <h1>User Management</h1>
+      <nav style={{ marginBottom: "16px" }}>
+        <Link to="/auth/login" style={{ marginRight: "10px" }}>
+          Login
+        </Link>
+        <Link to="/auth/signup" style={{ marginRight: "10px" }}>
+          Signup
+        </Link>
+        <Link to="/profile">Profile</Link>
+      </nav>
+      <Outlet />
     </div>
   );
-};
+}
 
-export default App;
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <Navigate to="/auth/login" replace />,
+      },
+      {
+        path: "auth/*",
+        element: (
+          <Suspense fallback={<p>Loading auth...</p>}>
+            <AuthApp />
+          </Suspense>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <Suspense fallback={<p>Loading profile...</p>}>
+            <ProfileApp />
+          </Suspense>
+        ),
+      },
+      {
+        path: "*",
+        element: <Navigate to="/auth/login" replace />,
+      },
+    ],
+  },
+]);

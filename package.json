@@ -3,11 +3,11 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "echo Root workspace",
-    "build": "echo Build workspace",
-    "lint": "echo Lint workspace",
-    "typecheck": "echo Typecheck workspace",
-    "format": "echo Format workspace"
+    "dev": "pnpm run dev:server & pnpm run dev:host & pnpm run dev:auth & pnpm run dev:profile",
+    "dev:server": "pnpm --filter server dev",
+    "dev:host": "pnpm --filter host dev",
+    "dev:auth": "pnpm --filter auth dev",
+    "dev:profile": "pnpm --filter profile dev"
   },
   "keywords": [],
   "author": "",
